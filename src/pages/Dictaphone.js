@@ -28,7 +28,7 @@ const Dictaphone = () => {
         <button onClick={start}>Start</button>
         <button onClick={SpeechRecognition.stopListening}>Stop</button>
         <button onClick={resetTranscript}>Reset</button>
-        <p>{transcript}</p>
+        {/* <p>{transcript}</p> */}
         <CreateTextTrigger text={transcript}/>
       </>
   );
