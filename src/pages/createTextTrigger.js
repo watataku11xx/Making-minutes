@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const  CreateTextTrigger = (props) => {
 
@@ -26,8 +28,16 @@ const  CreateTextTrigger = (props) => {
   return(
     <>
       <form onSubmit={handleSubmit}>
-        <textarea type="text" value={props.text}></textarea>
-        <button type="submit">議事録を作成する</button>
+        <TextField
+          id="outlined-multiline-static"
+          label="Text"
+          multiline
+          rows={4}
+          defaultValue="Default Value"
+          type="text"
+          value={props.text}
+        />
+        <Button type="submit" variant="contained">Make text</Button>
       </form>
       {resultText && <p>{resultText}</p>}
     </>

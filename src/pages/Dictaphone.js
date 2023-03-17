@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import CreateTextTrigger from './createTextTrigger';
-
+import Button from '@mui/material/Button';
 
 const Dictaphone = () => {
 
@@ -25,10 +25,9 @@ const Dictaphone = () => {
   return (
       <>
         <p>Microphone: {listening ? 'on' : 'off'}</p>
-        <button onClick={start}>Start</button>
-        <button onClick={SpeechRecognition.stopListening}>Stop</button>
-        <button onClick={resetTranscript}>Reset</button>
-        {/* <p>{transcript}</p> */}
+        <Button onClick={start} variant="outlined">Start</Button>
+        <Button onClick={SpeechRecognition.stopListening} variant="outlined">Stop</Button>
+        <Button onClick={resetTranscript} variant="outlined">Reset</Button>
         <CreateTextTrigger text={transcript}/>
       </>
   );
