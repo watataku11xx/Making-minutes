@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
@@ -6,10 +6,18 @@ const  CreateTextTrigger = (props) => {
 
   const [inputText, setInputText] = useState();
   const [resultText, setResultText] = useState();
+
+  useEffect(() => {
+    setInputText(props.text);
+  }, [props.text]);
   
   const handleSubmit = async (event) => {
     
-    setInputText(props.text);
+    if(!inputText){
+      alert('録音されていません。');
+      event.preventDefault();
+      return;
+    }
 
     event.preventDefault();
     
