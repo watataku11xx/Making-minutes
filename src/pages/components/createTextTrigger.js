@@ -5,7 +5,7 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Collapse from '@mui/material/Collapse';
-import styles from '../styles/createTextTrigger.module.css'
+import styles from '../../styles/createTextTrigger.module.css'
 import { Box } from "@mui/system";
 
 const  CreateTextTrigger = (props) => {

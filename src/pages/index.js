@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import Dictaphone from './Dictaphone'
+import Dictaphone from './components/Dictaphone'
 
 const inter = Inter({ subsets: ['latin'] })
 
