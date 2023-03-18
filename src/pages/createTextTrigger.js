@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Collapse from '@mui/material/Collapse';
+import styles from '../styles/createTextTrigger.module.css'
+import { Box } from "@mui/system";
 
 const  CreateTextTrigger = (props) => {
 
   const [inputText, setInputText] = useState();
   const [resultText, setResultText] = useState();
+  const [openAlert, setOpenAlert] = useState(false);
 
   useEffect(() => {
     setInputText(props.text);
@@ -14,7 +21,7 @@ const  CreateTextTrigger = (props) => {
   const handleSubmit = async (event) => {
     
     if(!inputText){
-      alert('録音されていません。');
+      setAlert();
       event.preventDefault();
       return;
     }
@@ -33,21 +40,74 @@ const  CreateTextTrigger = (props) => {
     setResultText(data);
   }
 
+  const setAlert = () => {
+    setOpenAlert(true);
+  };
+
   return(
     <>
       <form onSubmit={handleSubmit}>
         <TextField
+          fullWidth
           id="outlined-multiline-static"
           label="Text"
           multiline
           rows={4}
-          defaultValue="Default Value"
           type="text"
           value={props.text}
+          className={styles.textField}
         />
-        <Button type="submit" variant="contained">Make text</Button>
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            mt: 2,
+        }}>
+          <Button type="submit" variant="contained">Make text</Button>
+        </Box>
       </form>
-      {resultText && <p>{resultText}</p>}
+      <Box sx={{
+        width: 500,
+        position: 'fixed',
+        bottom: 0,
+        right: 0,
+      }}>
+        <Collapse in={openAlert}>
+          <Alert
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpenAlert(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+            sx={{ 
+              mb: 2,
+              mr: 2,
+            }}>
+            ERROR! 音声入力がされていません。
+          </Alert>
+        </Collapse>
+      </Box>
+      {resultText && 
+        <TextField
+          fullWidth
+          id="outlined-multiline-static"
+          label="Minutes"
+          multiline
+          rows={4}
+          type="text"
+          value={resultText}
+          className={styles.textField}
+          sx={{
+            mt: 2,
+          }}
+        />
+      }
     </>
   );
 };

@@ -18,8 +18,7 @@ export default async function Dictaphone(req, res) {
         prompt: prompt,
         max_tokens: 500,
     });
-    console.log(response.data.choices[0].text);
-    res.status(200).json(response.data.choices[0].text);
+    res.status(200).json(response.data.choices[0].text.trimStart());
     })();
 
   } else {
